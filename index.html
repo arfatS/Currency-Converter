@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Currency Converter</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  <div class="heading">
+    <h1>Currency Converter</h1>
+  </div>
+
+  <div class="container">
+    <form>
+      <div class="field">
+        <label for="fromCurrency">From</label>
+        <input type="text" name="fromCurrency" id="fromCurrency" placeholder="Eg: USD, CAD, INR, EUR">
+      </div>
+      
+      <div class="field">
+        <label for="toCurrency">To</label>
+        <input type="text" name="toCurrency" id="toCurrency" placeholder="Eg: USD, CAD, INR, EUR">
+      </div>
+
+      <div class="field">
+        <label for="amount">Amount</label>
+        <input type="number" name="amount" id="amount">
+      </div>
+
+      <div class="btn">
+        <button id="convertBtn">Convert</button>
+      </div>
+    </form>
+
+    <div class="summary">
+      <h2>20 USD is worth 25.32 CAD</h2><hr>
+      <p>You can spend these in the following countries :</p>
+      <p>Canada, Brazil, England</p>
+    </div>
+  </div>
+
+  <div class="footer">
+      <a href="https://in.linkedin.com/in/arfatsarole" target="_blank"><i class="fa fa-linkedin-square" style="color:#2867B2"></i></a>
+      <a href="https://www.github.com/arfatS" target="_blank"><i class="fa fa-github" style="color:#3E2C00"></i></a>
+      <a href="https://www.instagram.com/arfat__s" target="_blank"><i class="fa fa-instagram" style="color:#405DE6"></i></a>
+      <a href="mailto:arfatsarole@gmail.com" target="_blank"><i class="fa fa-google-plus" style="color:#DB4437"></i></a>   
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
