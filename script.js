@@ -6,7 +6,7 @@ var convertBtn = document.querySelector("#convertBtn");
 //Exchange rate API call => http://currencylayer.com
 const getExchangeRate = async (fromCurrency, toCurrency) => {
   try {
-    const link = `http://api.currencylayer.com/live?access_key=477441e8e4bdddfc7e78d3076dbbc1cf&currencies=${fromCurrency},${toCurrency}&format=1`;
+    const link = `https://cors-anywhere.herokuapp.com/http://api.currencylayer.com/live?access_key=477441e8e4bdddfc7e78d3076dbbc1cf&currencies=${fromCurrency},${toCurrency}&format=1`;
 
     const response = await axios.get(link);
 
