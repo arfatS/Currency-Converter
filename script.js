@@ -39,9 +39,10 @@ const convertCurrency = async (fromCurrency, toCurrency, amount) => {
   const countriesFrom = await getCountries(fromCurrency);
   const convertedAmount = (amount * exchangeRate).toFixed(2);
 
+  const unitRate = `1 ${fromCurrency} = ${exchangeRate.toFixed(2)} ${toCurrency}`
   const message = [
-    `${amount} ${fromCurrency} is worth ${convertedAmount} ${toCurrency}.`,
-    countriesTo, countriesFrom
+    `${amount} ${fromCurrency} = ${convertedAmount} ${toCurrency}`,
+    countriesTo, countriesFrom, unitRate
   ];
   return message;
 };
@@ -52,24 +53,34 @@ function convert() {
   let from = fromCurrency.value;
   let to = toCurrency.value;
 
-  let summary = document.querySelector(".summary");
   let result = document.querySelector("#result");
+  let unitRate = document.querySelector("#unitRate");
+  let countries = document.querySelector('.countries');
   let countriesTo = document.querySelector("#countriesTo");
   let countriesFrom = document.querySelector("#countriesFrom");
   let loading = document.querySelector("#loading");
+  let errorText = document.querySelector("#error");
 
 
   if (amt && from && to) {
 
     loading.style.display = "inherit"
-    document.getElementById("error").style.visibility = "hidden";
-    document.querySelector('.countries').style.display = "inherit";
+    errorText.style.visibility = "hidden";
+    countries.style.display = "none";
+    result.style.display = "none";
+    unitRate.style.display = "none"
 
     convertCurrency(from.toUpperCase(), to.toUpperCase(), amt)
       .then((message) => {
-        loading.style.display = 'none'
-        summary.style.display = "inherit";
+        loading.style.display = "none"
+        countries.style.display = "inherit";
+        result.style.display = "inherit";
+        unitRate.style.display = "inherit"
+
+        result.style.fontSize = "48px"
         result.textContent = message[0];
+        unitRate.textContent = message[3]
+
         let countries1 = message[1];
         let countries2 = message[2];
 
@@ -97,7 +108,7 @@ function convert() {
           listContainer1.appendChild(node);
         });
         let p1 = document.createElement('p')
-        let text1 = `You can spend ${to.toUpperCase()} in the following countries :`
+        let text1 = `Countries using ${to.toUpperCase()} :`
         text1 = document.createTextNode(text1)
         p1.appendChild(text1)
         countriesTo.appendChild(p1)
@@ -112,7 +123,7 @@ function convert() {
           listContainer2.appendChild(node);
         });
         let p2 = document.createElement('p')
-        let text2 = `You can spend ${from.toUpperCase()} in the following countries :`
+        let text2 = `Countries using ${from.toUpperCase()} :`
         text2 = document.createTextNode(text2)
         p2.appendChild(text2)
         countriesFrom.appendChild(p2)
@@ -120,17 +131,18 @@ function convert() {
 
       })
       .catch((error) => {
-        loading.style.display = 'none'
-        summary.style.display = "inherit";
-        document.querySelector('.countries').style.display = "none";
-        document.getElementById("error").style.visibility = "hidden";
+        loading.style.display = "none"
+        countries.style.display = "none";
+        errorText.style.visibility = "hidden";
+        result.style.display = "inherit";
 
+        result.style.fontSize = "30px"
         result.textContent = error.message;
         console.log(error.message);
       });
   } 
   else {
-    document.getElementById("error").style.visibility = "inherit";
+    errorText.style.visibility = "inherit";
   }
 }
 
